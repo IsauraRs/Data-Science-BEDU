@@ -28,19 +28,19 @@ WHERE nombre LIKE 'M_losa';
 
 -- Reto 1: Busqueda de patrones mediante LIKE
 --
--- ¿Que artículos incluyen la palabra Pasta en su nombre?
+-- ¿Que articulos incluyen la palabra Pasta en su nombre?
 --
 SELECT *
 FROM articulo
 WHERE nombre LIKE '%Pasta%';
 --
--- ¿Que artículos incluyen la palabra Cannelloni en su nombre?
+-- ¿Que articulos incluyen la palabra Cannelloni en su nombre?
 --
 SELECT *
 FROM articulo
 WHERE nombre LIKE '%Cannelloni%';
 --
--- ¿Que nombres están separados por un guión (-) por ejemplo Puree - Kiwi?
+-- ¿Que nombres estan separados por un guion (-) por ejemplo Puree - Kiwi?
 --
 SELECT *
 FROM articulo
@@ -79,7 +79,7 @@ FROM articulo;
 SELECT COUNT(*) AS conteo_articulos
 FROM articulo;
 --
--- Cuenta cuántas filas hay
+-- Cuenta cuantas filas hay
 SELECT COUNT(*) AS conteo_articulos
 FROM articulo;
 --
@@ -94,22 +94,22 @@ FROM articulo;
 --
 -- Reto 2: Funciones de agrupamiento
 --
--- ¿Cuál es el promedio de salario de los puestos?
+-- ¿Cual es el promedio de salario de los puestos?
 SELECT AVG(salario)
 FROM puesto;
 --
--- ¿Cuántos artículos incluyen la palabra Pasta en su nombre?
+-- ¿Cuantos articulos incluyen la palabra Pasta en su nombre?
 --
 SELECT COUNT(*)
 FROM articulo
 WHERE nombre LIKE '%pasta%';
 --
--- ¿Cuál es el salario mínimo y máximo?
+-- ¿Cual es el salario mínimo y maximo?
 --
 SELECT MIN(salario), MAX(salario)
 FROM puesto;
 --
--- ¿Cuál es la suma del salario de los últimos cinco puestos agregados?
+-- ¿Cual es la suma del salario de los ultimos cinco puestos agregados?
 --
 SELECT MAX(id_puesto) -5
 FROM puesto;
@@ -137,19 +137,19 @@ FROM puesto GROUP BY nombre;
 --
 -- Reto 3: Agrupamiento
 --
--- ¿Cuántos registros hay por cada uno de los puestos?
+-- ¿Cuantos registros hay por cada uno de los puestos?
 --
 SELECT nombre, COUNT(*)
 FROM puesto
 GROUP BY nombre;
 --
--- ¿Cuánto dinero se paga en total por puesto?
+-- ¿Cuanto dinero se paga en total por puesto?
 --
 SELECT nombre , SUM(salario)
 FROM puesto
 GROUP BY nombre;
 --
--- ¿Cuál es el número total de ventas por vendedor?
+-- ¿Cual es el número total de ventas por vendedor?
 --
 SELECT id_empleado , COUNT(clave) AS ventas_totales
 FROM venta
@@ -157,7 +157,7 @@ GROUP BY id_empleado;
 --
 DESCRIBE articulo;
 --
--- ¿Cuál es el número total de ventas por artículo?
+-- ¿Cual es el número total de ventas por articulo?
 --
 SELECT id_articulo , COUNT(*)
 FROM venta
