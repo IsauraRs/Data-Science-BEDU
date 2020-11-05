@@ -1,5 +1,5 @@
 -- Reto 3
---
+-- Se probó en la base local
 -- Obtener el puesto de un empleado.
 CREATE VIEW puestos AS
 SELECT CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', e.apellido_materno), p.nombre
