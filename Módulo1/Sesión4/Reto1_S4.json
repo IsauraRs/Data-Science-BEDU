@@ -10,7 +10,7 @@
  }
 }
 
-//Título, elenco y año de cada película.
+// Título, elenco y año de cada película.
 
 {
  project: {
@@ -20,7 +20,7 @@
  }
 }
 
-//Nombre y contraseña de cada usuario.
+// Nombre y contraseña de cada usuario.
 
 {
  project: {
