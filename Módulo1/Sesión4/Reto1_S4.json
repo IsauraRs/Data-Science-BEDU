@@ -1,0 +1,31 @@
+// Reto 1: colecciones, documentos y proyecciones
+
+// Fecha, nombre y texto de cada comentario.
+
+{
+ project: {
+  date: 1,
+  name: 1,
+  text: 1
+ }
+}
+
+//Título, elenco y año de cada película.
+
+{
+ project: {
+  title: 1,
+  cast: 1,
+  year: 1
+ }
+}
+
+//Nombre y contraseña de cada usuario.
+
+{
+ project: {
+  name: 1,
+  password: 1,
+  _id: 0
+ }
+}

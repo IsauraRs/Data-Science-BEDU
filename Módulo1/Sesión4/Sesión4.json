@@ -1,0 +1,200 @@
+// Sesión 4
+
+{
+    project: {
+     name: 1,
+     email: 1
+    }
+   }
+//
+   {
+    project: {
+     title: 1,
+     cast: 1,
+     year: 1
+    }
+   }
+//
+{
+    filter: {
+     year: 1993
+    }
+   }
+//
+{
+    filter: {
+     year: {
+      $gte: 2000
+     }
+    }
+   }
+//
+{
+    filter: {
+     year: {
+      $lte: 2019
+     }
+    }
+   }
+//
+{
+    filter: {
+     $and: [
+      {
+       year: {
+        $gte: 2012
+       }
+      },
+      {
+       year: {
+        $lte: 2019
+       }
+      }
+     ]
+    }
+   }
+//
+{
+    sort: {
+     year: 1
+    }
+   }
+//
+{
+    sort: {
+     year: -1
+    }
+   }
+//
+{
+    sort: {
+     year: -1
+    },
+    limit: 5
+   }
+//
+{
+    filter: {
+     date: 1,
+     name: 1,
+     text: 1
+    }
+   }
+
+// Filtros
+
+{
+    filter: {
+     year: 1993
+    }
+   }
+
+// Los operadores comienzan con "$"
+
+// greater than or equal $gte
+
+{
+    filter: {
+     year: {
+      $gte: 2000
+     }
+    }
+   }
+
+// Later than or equal $lte
+
+{
+    filter: {
+     year: {
+      $lte: 2019
+     }
+    }
+   }
+
+// $and 
+// And recibe un arreglo, sus elementos serán cada  una de las condiciones que se quiere que se cumplan
+   {
+    filter: {
+     $and: [
+      {
+       year: {
+        $gte: 2012
+       }
+      },
+      {
+       year: {
+        $lte: 2019
+       }
+      }
+     ]
+    }
+   }
+
+   // Sort ordena las consultas
+   {
+    sort: {
+     year: 1
+    }
+   }
+   // Si se pone-1 lo ordena al revés
+   {
+    sort: {
+     year: -1
+    }
+   }
+   // LIMIT trae solo ese número de registros
+   {
+    sort: {
+     year: -1
+    },
+    limit: 5
+   }
+
+// Reto 2
+
+// ¿Qué comentarios ha hecho Greg Powell?
+
+   {
+    filter: {
+     name: 'Greg Powell'
+    }
+   }
+
+//¿Qué comentarios han hecho Greg Powell o Mercedes Tyler?
+
+   {
+    filter: {
+     $or: [
+      {
+       name: 'Greg Powell'
+      },
+      {
+       name: 'Mercedes Tyler'
+      }
+     ]
+    }
+   }
+
+// ¿Cuál es el máximo número de comentarios en una película?
+
+   {
+    project: {
+     num_mflix_comments: 1
+    },
+    sort: {
+     num_mflix_comments: -1
+    },
+    limit: 1
+   }
+
+// ¿Cuál es título de las cinco películas más comentadas?
+
+   {
+    project: {
+     title: 1
+    },
+    sort: {
+     num_mflix_comments: -1
+    },
+    limit: 5
+   }
