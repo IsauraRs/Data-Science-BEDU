@@ -2,7 +2,20 @@
 //mediante el uso de agregaciones, encontrar 
 //el número de publicaciones que tienen conexión 
 //a Internet, sea desde Wifi o desde cable (Ethernet).
-
+//
+//En la sección "aggregations" se elige la pestaña $match
+//posteriormente se añade una nueva abajo y se usa $count
+//
+//En $match
+{
+    "amenities": { $in: ["Wifi","Ethernet"] }
+   }
+//
+// En $count
+ '"Wifi","Ethernet"'
+//
+//Finalmente si se exporta la consulta 
+//se obtiene:
 [{$match: {
     "amenities": { $in: ["Wifi","Ethernet"] }
    }
