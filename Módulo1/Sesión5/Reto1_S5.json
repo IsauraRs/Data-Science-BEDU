@@ -1,0 +1,39 @@
+// Propiedades que no permitan fiestas.
+//
+{house_rules: /No Parties/i}
+// 
+{
+    filter: {
+     house_rules: RegExp('No Parties', i)
+    }
+}
+//
+//Propiedades que admitan mascotas.
+//
+{house_rules: /Pets Allowed/i}
+//
+{
+    filter: {
+     house_rules: RegExp('Pets Allowed', i)
+    }
+}
+//
+//Propiedades que no permitan fumadores.
+//
+{house_rules: /No Smoking/i}
+//
+{
+    filter: {
+     house_rules: RegExp('No Smoking', i)
+    }
+}
+//
+//Propiedades que no permitan fiestas ni fumadores.
+//
+{house_rules: /No Parties|No Smoking/i}
+//
+{
+    filter: {
+     house_rules: RegExp('No Parties|No Smoking', i)
+    }
+}

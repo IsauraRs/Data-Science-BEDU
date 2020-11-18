@@ -1,0 +1,286 @@
+// REGEXP
+//Dentro de plot en sample_mflix movies
+// Sensible a mayúsculas y minúsculas
+// Si se agrega una i al final es case insensitive
+
+{plot : /three/}
+//
+{
+    filter: {
+     plot: RegExp('three')
+    }
+   }
+
+   {plot : /three/i}
+   //
+   {
+    filter: {
+     plot: RegExp('three', i)
+    }
+   }
+// Buscar al inicio de una oración ^
+{plot : /^three/i}
+//
+{
+    filter: {
+     plot: RegExp('^three', i)
+    }
+   }
+
+// Espacio \s
+{plot : /\sThree\s/}
+//
+{
+    filter: {
+     plot: RegExp('\sThree\s')
+    }
+   }
+
+   //Para buscar al final de la oración $
+   {plot : /end.$/i}
+   //
+   {
+    filter: {
+     plot: RegExp('end.$', i)
+    }
+   }
+// El . indica 1 caracter (cualquier caracter)
+// Si se quiere buscar un . se debe escapar. Para escapar se usa \
+{plot : /end\.$/i}
+//
+{
+    filter: {
+     plot: RegExp('end\.$', i)
+    }
+   }
+//
+   {plot : /m....r/i}
+//
+{
+    filter: {
+     plot: RegExp('m....r', i)
+    }
+   }
+
+//Buscar repeticiones de caracteres
+//Cuantificador * busca ese patron 0,1 o más veces
+{plot : /m.*r/i}
+//
+{
+    filter: {
+     plot: RegExp('m.*r', i)
+    }
+   }
+
+// + El signo debe repetirse 1 o más veces
+{plot : /m.+r/i}
+//
+{
+    filter: {
+     plot: RegExp('m.+r', i)
+    }
+   }
+//Si se le pasan {} se puede indicar el número
+// de caracteres entre esas letras
+{plot : /m.{4}r/i}
+//
+{
+    filter: {
+     plot: RegExp('m.{4}r', i)
+    }
+   }
+// Sets de cosas (caracteres) que se quieren buscar []
+{plot : /m[ae]n/i}
+//
+{
+    filter: {
+     plot: RegExp('m[ae]n', i)
+    }
+   }
+   //Busca cualquiera de los caracteres dentro del set
+   {plot : /^M[ae]n/i}
+   //
+   {
+    filter: {
+     plot: RegExp('^M[ae]n', i)
+    }
+   }
+// El número de caracteres dentro de []-->{} 
+// en cualquier combinación
+{plot : /[12345678]{2}/}
+//
+{
+    filter: {
+     plot: RegExp('[12345678]{2}')
+    }
+   }
+//
+{plot : / [1234567890]{4} /}
+//
+{
+    filter: {
+     plot: RegExp(' [12345678]{4} ')
+    }
+   }
+
+//Dentro de [] se puede poner un rango
+{plot : / [0-9]{4} /}
+//
+{
+    filter: {
+     plot: RegExp(' [1234567890]{4} ')
+    }
+   }
+//
+{
+    filter: {
+     plot: RegExp(' [0-9]{4} ')
+    }
+   }
+// También se puede hacer con letras
+{plot : / [a-e]{4} /}
+//
+{
+    filter: {
+     plot: RegExp(' [a-e]{4} ')
+    }
+   }
+// \s clase espacio, es más amplio, considera todos los tipos de espacio
+// encontrar un 1, un 9 y luego 2 valores del 0 al 9
+{plot : / [1][9][0-9]{2} /}
+//
+{
+    filter: {
+     plot: RegExp(' [1][9][0-9]{2} ')
+    }
+   }
+//
+// \d indica dígitos 
+// 4 dígitos numéricos consecutivos rodeados por espacios
+/ \s[\d]{4}\s /
+// Or --> | (pipe)
+//La palabra hombre o mujer ignorando mayúsculas y minúsculas 
+/hombre|mujer/i
+//Cualquier palabra que comience con p y termine 
+// con o y contenga 5 letras en total
+//
+//El número de puntos . indica el número de letras 
+// en medio
+/ p...o /
+//La palabra perro o cerro ignorando mayúsculas y
+//minúsculas
+/[cp]erro/i
+//Uno o más números seguido de una o más letras minúsculas
+/[0-9]+[a-z]+/
+//
+//Notación punto
+//A veces los valores que se quieren filtrar están
+//anidados dentro de otros objetos
+//Se esctribe el campo en el que  se quiere buscar
+//entre comillas, se pone "llave_campo.llave":" llave_campo-dentro del que se quiere buscar
+//Busca llaves dentro de otras llaves(el valor al que accede la llave es un objeto que tiene otras llaves)
+//En sample_airbnb
+{"address.country": "Brazil"}
+//
+{
+    filter: {
+     'address.country': 'Brazil'
+    }
+   }
+//
+{ "review_scores.review_scores_rating": {$gt:90}}
+//
+{
+    filter: {
+     'review_scores.review_scores_rating': {
+      $gt: 90
+     }
+    }
+   }
+//Se pone entre comillas " " para poner el punto .
+//$in recibe un arreglo
+//Buscar dentro de un arreglo
+{ "amenities": {$in: ["Kitchen"] }}
+//
+{
+    filter: {
+     amenities: {
+      $in: [
+       'Kitchen'
+      ]
+     }
+    }
+   }
+//En el arreglo se ponen los elementos que se quieren buscar
+//Que contenga Kitchen o Wifi o ambas
+{ "amenities": {$in: ["Kitchen","Wi fi"] }}
+//
+{
+    filter: {
+     amenities: {
+      $in: [
+       'Kitchen',
+       'Wi fi'
+      ]
+     }
+    }
+   }
+//
+//Rango >=50, que tenga internet o wi fi, que tenga elevador y el precio <=100
+{ "address.country_code": "ES", "review_scores.review_scores_rating": { $gte: 50 }, $and: [ { amenities: { $in: ["Wifi", "Internet"] } }, { amenities: { $in: ["Elevator"] } } ], price: { $lte: 100 } } 
+//
+{
+    filter: {
+     'address.country_code': 'ES',
+     'review_scores.review_scores_rating': {
+      $gte: 50
+     },
+     $and: [
+      {
+       amenities: {
+        $in: [
+         'Wifi',
+         'Internet'
+        ]
+       }
+      },
+      {
+       amenities: {
+        $in: [
+         'Elevator'
+        ]
+       }
+      }
+     ],
+     price: {
+      $lte: 100
+     }
+    }
+   }
+//
+//Reto2
+//
+//Usando la colección sample_airbnb.listingsAndReviews, 
+//agrega un filtro que permita obtener todas las 
+//publicaciones que tengan 50 o más comentarios, 
+//que la valoración sea mayor o igual a 80, que 
+//cuenten con conexión a Internet vía cable y 
+//estén ubicada en Brazil.
+{number_of_reviews: {$gte:50}, "review_scores.review_scores_rating": { $gte: 80 }, amenities:{$in: [/Ethernet/]}, "address.country":"Brazil"}
+//
+{
+    filter: {
+     number_of_reviews: {
+      $gte: 50
+     },
+     'review_scores.review_scores_rating': {
+      $gte: 80
+     },
+     amenities: {
+      $in: [
+       RegExp('Ethernet')
+      ]
+     },
+     'address.country': 'Brazil'
+    }
+   }
