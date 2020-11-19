@@ -1,0 +1,329 @@
+//Costo promedio de una propiedad 
+//tipo casa
+//Se usa $match
+[{$match: {
+    property_type: "House"
+  }}]
+//
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://Isauraa:bedumongo@clusterforbedu.citlm.mongodb.net/admin?authSource=admin&replicaSet=atlas-y9jsnn-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+result = client['sample_airbnb']['listingsAndReviews'].aggregate([
+    {
+        '$match': {
+            'property_type': 'House'
+        }
+    }
+])
+//
+//Asegurarse de que tenga un cuarto
+[{$match: {
+    property_type: "House"
+  }}, {$match: {
+    bedrooms: {$gte: 1 }
+  }}]
+  //
+  # Requires the PyMongo package.
+  # https://api.mongodb.com/python/current
+  
+  client = MongoClient('mongodb+srv://Isauraa:bedumongo@clusterforbedu.citlm.mongodb.net/admin?authSource=admin&replicaSet=atlas-y9jsnn-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+  result = client['sample_airbnb']['listingsAndReviews'].aggregate([
+      {
+          '$match': {
+              'property_type': 'House'
+          }
+      }, {
+          '$match': {
+              'bedrooms': {
+                  '$gte': 1
+              }
+          }
+      }
+  ])
+  //
+  //El costo de la recámara
+  //de cada propiedad
+  //se divide el costo entre el número de cuartos
+  //$divide: ["$price", "$bedrooms"]
+  //$ sin comillas, se habla de operadores, 
+  //si se pone con comillas se hace referencia a un campo dentro de una operación
+  [{$match: {
+    property_type: "House"
+  }}, {$match: {
+    bedrooms: {$gte: 1 }
+  }}, {$addFields: {
+    costo_Habitacion: {
+      $divide: ["$price", "$bedrooms"]
+    }
+  
+  }}]
+  //
+  # Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://Isauraa:bedumongo@clusterforbedu.citlm.mongodb.net/admin?authSource=admin&replicaSet=atlas-y9jsnn-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+result = client['sample_airbnb']['listingsAndReviews'].aggregate([
+    {
+        '$match': {
+            'property_type': 'House'
+        }
+    }, {
+        '$match': {
+            'bedrooms': {
+                '$gte': 1
+            }
+        }
+    }, {
+        '$addFields': {
+            'costo_Habitacion': {
+                '$divide': [
+                    '$price', '$bedrooms'
+                ]
+            }
+        }
+    }
+])
+// Contar el tamaño de arreglo
+[{$addFields: {
+    AmenitiesNum: {
+      $size: "$amenities"
+    }
+  }}]
+
+//
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://Isauraa:bedumongo@clusterforbedu.citlm.mongodb.net/admin?authSource=admin&replicaSet=atlas-y9jsnn-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+result = client['sample_airbnb']['listingsAndReviews'].aggregate([
+    {
+        '$addFields': {
+            'AmenitiesNum': {
+                '$size': '$amenities'
+            }
+        }
+    }
+])
+//
+//
+[{$addFields: {
+    AmenitiesNum: {
+      $size: "$amenities"
+    }
+  }}, {$project: {
+    name: 1,
+    AmenitiesNum: 1,
+    _id:0
+  }}]
+//
+//
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://Isauraa:bedumongo@clusterforbedu.citlm.mongodb.net/admin?authSource=admin&replicaSet=atlas-y9jsnn-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+result = client['sample_airbnb']['listingsAndReviews'].aggregate([
+    {
+        '$addFields': {
+            'AmenitiesNum': {
+                '$size': '$amenities'
+            }
+        }
+    }, {
+        '$project': {
+            'name': 1, 
+            'AmenitiesNum': 1, 
+            '_id': 0
+        }
+    }
+])
+//
+//
+[{$addFields: {
+    AmenitiesNum: {
+      $size: "$amenities"
+    }
+  }}, {$project: {
+    name: 1,
+    AmenitiesNum: 1,
+    _id:0
+  }}, {$sort: {
+    AmenitiesNum: -1
+  
+  }}, {$limit: 1}]
+//
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://Isauraa:bedumongo@clusterforbedu.citlm.mongodb.net/admin?authSource=admin&replicaSet=atlas-y9jsnn-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+result = client['sample_airbnb']['listingsAndReviews'].aggregate([
+    {
+        '$addFields': {
+            'AmenitiesNum': {
+                '$size': '$amenities'
+            }
+        }
+    }, {
+        '$project': {
+            'name': 1, 
+            'AmenitiesNum': 1, 
+            '_id': 0
+        }
+    }, {
+        '$sort': {
+            'AmenitiesNum': -1
+        }
+    }, {
+        '$limit': 1
+    }
+])
+//
+//Reto1
+//
+[{$match: {
+    property_type: "House"
+  }}, {$match: {
+    bedrooms: {$gte: 1 }
+  }}, {$addFields: {
+    costo_Habitacion: {
+      $divide: ["$price", "$bedrooms"]
+    }
+  
+  }}, {$group: {
+    _id: "$address.country"
+  }}]
+//
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://Isauraa:bedumongo@clusterforbedu.citlm.mongodb.net/admin?authSource=admin&replicaSet=atlas-y9jsnn-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+result = client['sample_airbnb']['listingsAndReviews'].aggregate([
+    {
+        '$match': {
+            'property_type': 'House'
+        }
+    }, {
+        '$match': {
+            'bedrooms': {
+                '$gte': 1
+            }
+        }
+    }, {
+        '$addFields': {
+            'costo_Habitacion': {
+                '$divide': [
+                    '$price', '$bedrooms'
+                ]
+            }
+        }
+    }, {
+        '$group': {
+            '_id': '$address.country'
+        }
+    }
+])
+//
+[{$group: {
+    _id: "$property_type",
+    AgrupacionTipoPropiedad: {
+      $sum: 1
+    }
+  }}]
+  //
+  # Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://Isauraa:bedumongo@clusterforbedu.citlm.mongodb.net/admin?authSource=admin&replicaSet=atlas-y9jsnn-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+result = client['sample_airbnb']['listingsAndReviews'].aggregate([
+    {
+        '$group': {
+            '_id': '$property_type', 
+            'AgrupacionTipoPropiedad': {
+                '$sum': 1
+            }
+        }
+    }
+])
+
+//Lookup
+[{$lookup: {
+    from: 'comments',
+    localField: '_id',
+    foreignField: 'movie_id',
+    as: 'comments'
+  }}]
+//
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://Isauraa:bedumongo@clusterforbedu.citlm.mongodb.net/admin?authSource=admin&replicaSet=atlas-y9jsnn-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+result = client['sample_mflix']['movies'].aggregate([
+    {
+        '$lookup': {
+            'from': 'comments', 
+            'localField': '_id', 
+            'foreignField': 'movie_id', 
+            'as': 'comments'
+        }
+    }
+])
+//
+[{$lookup: {
+    from: 'comments',
+    localField: '_id',
+    foreignField: 'movie_id',
+    as: 'comments'
+  }}, {$addFields: {
+    num_comments: {
+      $size: "$comments"
+    }
+  }}, {$match: {
+    "num_comments": {
+      $gte: 1
+    }
+  }}]
+  //
+  # Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://Isauraa:bedumongo@clusterforbedu.citlm.mongodb.net/admin?authSource=admin&replicaSet=atlas-y9jsnn-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+result = client['sample_mflix']['movies'].aggregate([
+    {
+        '$lookup': {
+            'from': 'comments', 
+            'localField': '_id', 
+            'foreignField': 'movie_id', 
+            'as': 'comments'
+        }
+    }, {
+        '$addFields': {
+            'num_comments': {
+                '$size': '$comments'
+            }
+        }
+    }, {
+        '$match': {
+            'num_comments': {
+                '$gte': 1
+            }
+        }
+    }
+])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
