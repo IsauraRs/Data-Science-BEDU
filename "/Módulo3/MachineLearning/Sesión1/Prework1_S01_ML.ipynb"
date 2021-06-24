@@ -1,0 +1,156 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 5,
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.8.5"
+    },
+    "colab": {
+      "name": "Prework1_S01_ML.ipynb",
+      "provenance": [],
+      "include_colab_link": true
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/IsauraRs/Data-Science-BEDU/blob/master/%22/M%C3%B3dulo3/MachineLearning/Sesi%C3%B3n1/Prework1_S01_ML.ipynb%22\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "sufficient-dallas"
+      },
+      "source": [
+        "# Prework 1\n",
+        "\n",
+        "## Listas y arrays\n",
+        "\n",
+        "Una variable en Python puede almacenar un dato, pero puede también almacenar una colección de datos ordenados por medio de un índice, a esto se le conoce como Array o Lista, se puede utilizar de dos maneras:\n",
+        "\n",
+        "*   Una lista de objetos: \n",
+        "~~~\n",
+        "lista_python = [objeto1, objeto2, objeto3]\n",
+        "~~~ \n",
+        "\n",
+        "*  Array de Numpy:\n",
+        "\n",
+        "~~~\n",
+        "array_numpy = np.array([1, 2, 3], dtype = np.int)\n",
+        "~~~\n",
+        "\n",
+        "## Funciones:\n",
+        "\n",
+        "Una función es un fragmento de código reutilizable que permite separar un problema en múltiples sub-problemas más sencillos de tratar por separado que en conjunto.\n",
+        "\n",
+        "Sintaxis: def nombreDeLaFunción(Parámetros)\n",
+        "\n",
+        "Ejemplo:\n",
+        "~~~\n",
+        "def sumarDosNumeros(numero_a, numero_b):\n",
+        "\n",
+        "    resultado = numero_a + numero_b\n",
+        "    return resultado\n",
+        "~~~\n",
+        "En las funciones es importante la identación, lo que está separado por un tab a la derecha, pertenece a una función.\n",
+        "\n",
+        "Se pueden regresar varios valores de una función.\n",
+        "\n",
+        "\n",
+        "## Machine Learning\n",
+        "\n",
+        "Es un sub-ámbito de la inteligencia artifficail, en el que se desarrollan sistemas o algoritmos que aprenden de manera automatizada, mejoran su aprendizaje, y desempeño de la misma manera. Este subámbito se enfoca en que los programas computacionales tengan acceso a datos y que con esa información pueda tomar decisiones o predecir información.\n",
+        "\n",
+        "El programa comienza a identificar patrones e información clave a partir de datos, instruciones o ejemplos, de esta manera puede tomar decisiones basadas en información actual. \n",
+        "\n",
+        "Hay diferentes tipos de algoritmos de aprendizaje en machine learning, las principales categorías son:\n",
+        "\n",
+        "*   Supervised machine learning algorithms (algoritmos supervisados): primero analizan datasets históricos con datos de entrada y salida previamente etiquetados, es decir, se tiene un input que corresponde a un output. Con el input se desarrolla una función para asignar etiquetas a los datos de salida. Este tipo de algoritmos deben entrenarse con datos históricos para predecir los datos de salida. sirven para:\n",
+        "    \n",
+        "\n",
+        "   *  Clasificación\n",
+        "   *  Regresión\n",
+        "   \n",
+        "      Algunos ejemplos son:\n",
+        "      \n",
+        "      \n",
+        "   \n",
+        "   *   Identificar mails como \"spam\" o no spam \n",
+        "   *   Detectar fraude de identidad (clasificación)\n",
+        "   *   Predecir el clima (regresión)\n",
+        "   \n",
+        "* Unsupervised machine learning algorithms (algoritmos no supervisados): en ellos no existen históricos de información y esta información no se encuentra previamente etiquetada/clasificada. No se busca inferir datos de salida, sino que se busca explorar datos y sacar inferencias o patrones para describir estructuras invisibles.\n",
+        "   Este aprendizaje busca únicamente describir la estructura de los datos para encontrar la estructura que ayude al análisis exploratorio.\n",
+        "   \n",
+        "   Este tipo de algoritmos sirve para:\n",
+        "   \n",
+        "   *   Clustering\n",
+        "   *   Reducción de dimensionalidad.\n",
+        "   \n",
+        "   \n",
+        "  Algunos ejemplos son:\n",
+        "     \n",
+        "     \n",
+        "     \n",
+        "   * Crear perfiles de usuarios o clientes basados (clustering).\n",
+        "   * Crear sistemas de recomendación.\n",
+        "     \n",
+        "*   Semi-supervised machine learning algorithms (Algoritmos semi-supervisados): contienen datos de entrenamiento en los que una parte está etiquetada (normalmente una pequeña parte), mientras que la otra no lo está. Este tipo de aprendizaje es utilizado para cuando los datos etiquetados necesitan recursos relevantes y hábiles para aprender de ellos.Por ejemplo:\n",
+        "\n",
+        "\n",
+        "   \n",
+        "   *   Entrenar modelos con pocos datos de entrenamiento.\n",
+        "\n",
+        "\n",
+        "*  Reinforcement machine learning algorithms (algoritmos de apredizaje por refuerzo): se basan en procesos de retroalimentación al interactuar con su ambiente y descubrir o accionar errores o rewards. Este modelo permite que el algoritmo determine el comportamiento ideal para mejorar su desempeño basándose en la información de entrada (feedback) para aprender con esayo-error. No entra dentro de la categoría de supervisado, por que no forzosamente se tienen datos etiquetados, ni es no supervisado porque sí sabemos la recompensa esperada. Se lleva un control y monitoreo de las respuestas a las acciones. Sirve para:\n",
+        "\n",
+        "\n",
+        "   *   Q learning.\n",
+        "   \n",
+        "   \n",
+        "   Ejemplos:\n",
+        "   \n",
+        "   \n",
+        "   *  Algoritmos que aprenden a jugar videojuegos o juegos de mesa.\n",
+        "   \n",
+        "   \n",
+        "Estos tipos de algoritmos permiten el análisis y procesamiento de una gran cantidad de datos e información para dar resultados de manera eficiente. El objetivo de esto es identificar oportunidades y riesgos, así como tomar decisiones al predecir información.\n",
+        "\n",
+        "         "
+      ],
+      "id": "sufficient-dallas"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "finite-detective"
+      },
+      "source": [
+        ""
+      ],
+      "id": "finite-detective",
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
